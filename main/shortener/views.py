@@ -2,13 +2,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, DomainForm
 from .forms import UserRegistrationForm
-from .utils import *
 from .models import Domain
-import requests
-from bs4 import BeautifulSoup
 
 
 HOST = 'http://127.0.0.1:8000/'
+
 
 def home(request):
     return render(request, 'shortener/base.html')
@@ -60,15 +58,10 @@ def transform_domain(request):
         domain_form = DomainForm()
     return render(request, 'shortener/domain_form.html', context={'form': domain_form})
 
+
 def redirect_to_origin(request, slug):
     domain = Domain.objects.get(short_link=HOST + slug)
     link = domain.link
-    print(type(link))
-    print(link)
-
-    #headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'}
-    #r = requests.get(link, headers=headers)
-    #html = BeautifulSoup(r.text, 'lxml')
     return render(request, 'shortener/redirect.html', context={'link': link})
 
 
