@@ -1,0 +1,13 @@
+{% extends 'shortener/base.html' %}
+{% block title %} <h3>Registration</h3> {% endblock %}
+{% block content %}
+<h1>Create an account</h1>
+<p>Please, sign up using the following form:</p>
+<form action="." method="post">
+  <div class="mb-3">
+  {{ user_form.as_p }}
+  {% csrf_token %}
+  <p><input type="submit" value="Create my account"></p>
+  </div>
+</form>
+{% endblock %}

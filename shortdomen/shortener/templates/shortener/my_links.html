@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Список всех ссылок, которые вы генерироавали на нашем сайте</h3>
+    <ul>
+    {% for i in links %}
+        <li>{{ i.pub_date|date:"d.m.Y"}}:{{ i }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

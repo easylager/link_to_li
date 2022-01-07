@@ -1,0 +1,15 @@
+{% extends 'shortener/base.html' %}
+{% block title %}<p>shorter</p>{% endblock %}
+{% block content %}
+<h1>Сократить ссылку</h1>
+<p>Напишите ссылку, которую хотите сократить</p>
+<form action="." method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Сократить"></p>
+</form>
+{% if short_domain %}
+
+<h3>{{ short_domain }}</h3>
+{% endif %}
+{% endblock %}
